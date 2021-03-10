@@ -64,8 +64,7 @@ const scoreTally = (scoreSequence) => {
      Game: ${gameCount}
      ************
 
-     PLAYER ONE: ${playerOneScore}
-     Score: ${
+     PLAYER ONE: ${
        !deuce
          ? scoreTranslation[playerOneScore]
          : deuce && playerOneScore > playerTwoScore
@@ -74,8 +73,7 @@ const scoreTally = (scoreSequence) => {
      } 
      Wins: ${playerOneWins} 
 
-     PLAYER TWO: ${playerTwoScore}
-     Score: ${
+     PLAYER TWO: ${
        !deuce
          ? scoreTranslation[playerTwoScore]
          : deuce && playerTwoScore > playerOneScore
