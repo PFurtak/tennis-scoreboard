@@ -26,7 +26,12 @@ const tallyScores = (scoreSequence) => {
   ).fill(0);
   let deuce = false;
 
-  const resetScores = () => {
+  const grantWin = (winningPlayer) => {
+    if (winningPlayer === 'Player One') {
+      playerOneWins++;
+    } else if (winningPlayer === 'Player Two') {
+      playerTwoWins++;
+    }
     playerOneScore = 0;
     playerTwoScore = 0;
   };
@@ -53,16 +58,14 @@ const tallyScores = (scoreSequence) => {
     }
 
     if (playerOneScore >= 4 && playerOneScore - playerTwoScore >= 2) {
-      playerOneWins++;
-      resetScores();
+      grantWin('Player One');
       leaveDeuce();
     } else if (playerOneScore > 3 && playerOneScore - playerTwoScore < 2) {
       enterDeuce();
     }
 
     if (playerTwoScore >= 4 && playerTwoScore - playerOneScore >= 2) {
-      playerTwoWins++;
-      resetScores();
+      grantWin('Player Two');
       leaveDeuce();
     } else if (playerTwoScore > 3 && playerTwoScore - playerOneScore < 2) {
       enterDeuce();
@@ -71,9 +74,9 @@ const tallyScores = (scoreSequence) => {
 
   console.log(
     `
-     Game: ${gameCount}
+     
      ************
-
+     Game: ${gameCount}
      PLAYER ONE: ${
        !deuce
          ? scoreTranslation[playerOneScore]
@@ -91,7 +94,6 @@ const tallyScores = (scoreSequence) => {
          : 'Deuce'
      } 
      Wins: ${playerTwoWins} 
-
      ************`
   );
   gameCount++;
